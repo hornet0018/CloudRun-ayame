@@ -89,7 +89,15 @@ func main() {
 	}
 
 	// URL の生成
-	url := fmt.Sprintf("%s:%d", config.ListenIPv4Address, config.ListenPortNumber)
+	//url := fmt.Sprintf("%s:%d", config.ListenIPv4Address, config.ListenPortNumber)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+    } else {
+	    log.Printf("PORT is %s", port)
+    }
+	url := fmt.Sprintf("%s:%d", config.ListenIPv4Address, port)
+ 
 
 	go server()
 
